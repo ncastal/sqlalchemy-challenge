@@ -85,8 +85,8 @@ def start_avg(start):
 @app.route('/api/v1.0/<start>/<end>')
 def start_end_avg(start,end):
     session=Session(engine)
-    result=session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
-        filter(Measurement.date >= start).filter(Measurement.date <= end).all()
+    result= session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
+        filter(Measurement.date >= start).filter(Measurement.date<=end).all()
     temps=list(np.ravel(result))
     return jsonify(temps)
 
